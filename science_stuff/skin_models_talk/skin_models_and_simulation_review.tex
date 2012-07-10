@@ -1,0 +1,443 @@
+%% Presentation about models and simulations of the human skin
+%% reviewing a paper by Mitragotri et al.
+%%
+%% presentation by Torbjörn Klatt < science at torbjoern minus klatt dot de >
+%% 2012-07-10
+%% Creative Commons 3.0 Attribution-ShareAlike
+
+\documentclass[utf8x,compress,professionalfonts]{beamer}
+
+\usepackage{pgfpages}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+
+\usetheme[width=4em]{Berkeley}
+\usecolortheme{dove}
+\setbeameroption{hide notes}
+\usenavigationsymbolstemplate{}
+
+\renewcommand{\vec}[1]{{\mathbf #1}}
+\newcommand{\eref}[1]{(\ref{#1})}
+
+\title[Simulation der Diffusion durch die Haut]{Modelle zur Simulierung der Diffusion durch die Haut}
+\author{Torbj\"orn Klatt}
+\institute{Goethe-Universi\"at Frankfurt am Main}
+\logo{\includegraphics[width=1.25cm]{goethe_uni.png}}
+\date{10.07.2012}
+\usefoottemplate{\vbox{%
+  \tinycolouredline{structure!20}%
+    {\color{gray}\tiny\textrm{\insertdate\hfill Creative Commons 3.0 BY-SA}}%
+}}
+
+\begin{document}
+
+\begin{frame}
+  \begin{center}
+    {\Large \textbf{Modelle zur Simulierung der Diffusion durch die Haut} \par}
+    \bigskip
+
+    {\scriptsize Review eines Papers von \textsc{Mitragotri} et al. \par}
+    \bigskip
+
+    {\small \textit{von Torbj\"orn Klatt} \par}
+    \bigskip
+
+    {\scriptsize Frankfurt a.M., 10. Juli 2012 \par}
+    \bigskip
+
+    {\scriptsize Im Seminar: \textit{Transport und Diffusion im Biogewebe} \par}
+    \bigskip
+
+    \includegraphics[width=0.25\textwidth]{goethe_uni.png}
+  \end{center}
+\end{frame}
+
+\section{Motivation}
+\begin{frame}{Am Anfang stehen Fragen \dots}
+  \begin{itemize}
+    \item<1-> Wie funktionieren Salben?
+      \bigskip
+    \item<2-> Wie genau ist das Aufquellen der Fingerkuppen unter Wasser zu
+      erkl\"aren?
+      \bigskip
+    \item<3-> Wie sch\"utzt die Haut den K\"orper vor Schadstoffen?
+      \bigskip
+    \item<4-> Wie lassen sich Medikamente schonend transdermal verabreichern?
+      \bigskip
+    \item<5-> \dots
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{\"Uber die Haut}
+  \begin{itemize}
+    \item mehr-schichter Aufbau
+      \begin{itemize}
+        \item \textit{Epidermis}, Oberhaut
+          \begin{itemize}
+            \item \textbf{Stratum Corneum, Hornschicht} (SC)
+            \item \dots
+          \end{itemize}
+        \item \textit{Dermis}, Lederhaut
+        \item \textit{Subcutis}, Unterhaut
+      \end{itemize}
+      \bigskip
+    \item nicht gleichm\"a\ss{}ig, da mit Poren und Haarwurzeln \"uberzogen
+  \end{itemize}
+\end{frame}
+
+\section{Modell\"ubersicht}
+\subsection{Einfache Modelle}
+\begin{frame}{Die Grundlagen}
+  \begin{itemize}
+    \item<1-> Wissen und Ausnutzung der Hauteigenschaften bereits in der fr\"uhen
+      Antike
+      \bigskip
+    \item<2-> gr\"o\ss{}te Entwicklungen und Fortschritte in den letzten 70 Jahren
+      \bigskip
+      \begin{itemize}
+        \item<3-> in den 60ern formulierte \textsc{Higuchi} erste mathematische
+          Modelle auf Basis von \textsc{Fick}s erstem Gesetz
+          \begin{equation}
+            J=-D\frac{\partial c}{\partial x}
+          \end{equation}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsubsection{Station\"ar}
+\begin{frame}{Einfachste Modelle}
+  Am Anfang steht immer ein einfaches Modell, so auch hier.
+
+  \vfill
+
+  \textbf{Annahmen:}
+  \begin{itemize}
+    \item SC ist homogen (mikro- und makroskopisch)
+      \bigskip
+    \item SC ist \"uberall gleich dick
+      \bigskip
+    \item Eigenschaften der SC sind zeit- und ortsunabh\"angig
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Fluss gel\"oster Teilchen durch die Haut}
+  Unter Annahme, dass die Haut eine quasi-homogene Membran ist, l\"asst sich
+  der Fluss gel\"oster Teilchen durch die Haut im Flussgleichgewicht schreiben als
+  \begin{equation}
+    J_{ss}=\frac{\frac{C_s}{C_v}D\Delta C_v}{h}
+  \end{equation}
+  mit Konzentration der L\"osung ($C_s$), Konzentration in den Hautzellen ($C_v$),
+  dem Diffusionskoeffizenten des \textit{SC} mit Dicke $h$ und dem Konzentrationsgradienten
+  ($\Delta C_v$) durch die Haut.
+\end{frame}
+
+\begin{frame}{Wie durchl\"assig ist denn die Haut?}
+  Das \textit{Stratum Corneum} ist die am wenigsten durchl\"assige Schicht und der
+  limitierende Faktor.
+  \bigskip
+
+  Die Flussgeschwindigkeit $J_{ss}$ h\"angt von der Art der gel\"osten Teilchen
+  sowie dem Konzentrationsverhältnis zwischen L\"osung und Hautzellen ($K=\frac{C_s}{C_v}$)
+  ab.
+  \bigskip
+
+  Daraus l\"asst sich ein Durchl\"assigkeitskoeffizient berechnen:
+  \begin{equation}
+    \kappa_p = \frac{KD}{h}
+  \end{equation}
+\end{frame}
+
+\begin{frame}{Bessere Modelle f\"ur $\kappa_p$ (QSPR)}
+  \begin{itemize}
+    \item<1-> In den 90er entwickelten haupts\"achlich \textsc{Potts} und \textsc{Guy}
+      ausgefeiltere Modelle f\"ur $\kappa_p$ und $J_{max}$
+      $$log(\kappa_p)=log\left(\frac{D_0}{h}\right)+log(K)-\left[\frac{\beta V}{2.303}\right]$$
+    \item<2-> Die sogenannten Modelle zur quantitativen Bestimmung des
+      \textit{Struktur-Durchl\"assigkeits-Verh\"altnisses} (\textit{QSPR}) bilden
+      experimentelle Werte sehr gut ab.
+      \bigskip
+    \item<3-> \textbf{Nachteil:} Funktionieren nur unter bestimmten vereinfachenden
+      Annahmen und ohne biochemischer Interaktion der Teilchen mit dem SC.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textit{Ziegel-M\"ortel-Modell}}
+  \begin{itemize}
+    \item<1-> SC besteht aus einzelnen Corneozyten, die \"uber Lipiddoppelschichten
+      untereinander verbunden sind.
+      \bigskip
+    \item<2-> \textbf{Annahme:} Diffusion \textbf{nur} durch Lipidschicht, nicht
+      durch Zellen
+      \bigskip
+    \item<2-> Dann wird die Durchl\"assigkeit definiert durch:
+      \begin{equation}
+        \kappa_p = \frac{\alpha D_{lip}K_{lip}}{h_{lip}}
+      \end{equation}
+      mit $h_{lip}$ als effektiver L\"ange des Diffusionswegs.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Erweiterungen des \textit{Ziegel-M\"ortel-Modells}}
+  \begin{itemize}
+    \item<1-> \textbf{Nachteil des vorherigen Modells}:\\
+      Anteil der Diffusion \textit{durch} die Corneozyten wurde ignoriert.
+      \bigskip
+    \item<2-> Hinzunahme der anteiligen Diffusion erh\"oht Komplexit\"at des Modells
+      gewaltig.
+      \bigskip
+    \item<3-> Als Kompromiss werden die Diffusions- und Durchl\"assigkeitskoeffizienten
+      sowie die L\"ange des Diffusionswegs \"uber das gesamte SC gemittelt.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Por\"ose Diffusionswege f\"ur hydrophile Teilchen}
+  \begin{itemize}
+    \item<1-> Vorherige Modelle ignorieren den Effekt von Poren und Haarfolikel, die
+      einen nennenswerten Anteil der Hautoberfl\"ache einnehmen.
+      \bigskip
+    \item<2-> Koeffizienten f\"ur \textit{Por\"osit\"at}, \textit{Tortousit\"at} und
+      Durchmesser der Poren/Folikel sowie der diffundierenden Teilchen k\"onnen
+      hinzugenommen werden.
+      \bigskip
+    \item<3-> \textbf{Nachteil:} Funktioniert fast ausschlie\ss{}lich nur f\"ur stark
+      hydrophile Teilchen.
+  \end{itemize}
+\end{frame}
+
+
+\subsubsection{Zeitabh\"angig}
+\begin{frame}{Pharmakokinetische Modelle (1)}
+  \begin{itemize}
+    \item \textbf{Annahme:} K\"orper und Haut sind voneinander getrennte Reservoirs
+      f\"ur Wirkstoffe
+      \bigskip
+    \item \textbf{Vorteil:} Gew\"ohnliche DGLen beschreiben Flussraten zwischen
+      verschiedenen Kompartments
+  \end{itemize}
+  \scriptsize
+  \begin{align}
+    V_{SC}\frac{d\left[ C_{skin}\right] }{dt} &= k_1C_v - k_{-1}\left[ C_{SC}\right]-k_2\left[ C_{SC}\right]+k_{-2}\left[ C_{VE}\right]\\
+    V_{VE}\frac{d\left[ C_{VE}\right] }{dt}   &= k_2\left[ C_{SC}\right] -k_{-2}\left[ C_{VE}\right] -k_3\left[ C_{VE}\right] +k_{-3}C_b
+  \end{align}
+  \normalsize
+\end{frame}
+
+\begin{frame}{Pharmakokinetische Modelle (2)}
+  \begin{itemize}
+    \item Experimentelle Daten werden ohne Ber\"ucksichtigung wichtiger Hautparameter
+      angeglichen: $\kappa_p$, $D$, $K$, $h$
+      \bigskip
+    \item Au\ss{}erdem werden nicht alle Aspekte des \textsc{Fick}'schen ersten Gesetz
+      abgebildet.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Wirkstoffe interagieren mit SC}
+  \begin{itemize}
+    \item<1-> Bisherige Modelle ignorieren bekannten Effekt der bio-chemischen Bindung
+      von diffundierenden Teilchen in den SC-Zellen.
+      \bigskip
+    \item<2-> Bindung verlangsamt Diffusion und l\"asst sich als System gekoppelter PDEs
+      beschreiben:
+      \begin{align}
+        \frac{\partial C_u}{\partial t} &= D\frac{\partial^2 C_u}{\partial x^2}-k_{on}C_u+k_{off}C_b \\
+        \frac{\partial C_b}{\partial t} &= k_{on}C_u - k_{off}C_b
+      \end{align}
+  \end{itemize}
+\end{frame}
+
+\subsection{Komplexere}
+\begin{frame}{N\"aher an der Realit\"at}
+  \begin{itemize}
+    \item Ausgefeiltere Modelle basierend auf den genannten und beschreiben
+      zus\"atzlich:
+      \bigskip
+      \begin{itemize}
+        \item<2-> Transport und Verstoffwechselung von Wirkstoffen durch/in SC
+          \bigskip
+        \item<3-> Gekoppelter Transport mehrerer Stoffe, die einander verst\"arken/hindern
+          \bigskip
+        \item<4-> zus\"atzliche kapillare Kr\"afte in SC
+          \bigskip
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Parameter}
+\begin{frame}{}
+  \begin{center}
+    Gr\"o\ss{}te Herausforderung in L\"osung vorheriger Modelle ist Ermittlung
+    der Hau(p)tparameter:
+    \bigskip
+    $$K\qquad D\qquad h$$
+  \end{center}
+\end{frame}
+
+\subsection{Verteilungskoeffizient}
+\begin{frame}{Ermittlung des Verteilungskoeffizienten $K$}
+  \begin{itemize}
+    \item Diffusion durch SC beinhaltet auch Wechsel zwischen verschiedenen Kompartments
+      (Lipidschicht, Corneozyt, umgebendes Medium etc.)
+      \bigskip
+    \item F\"ur SC zu umgebendem Medium gilt:
+      $$K_{SC/V} = \Phi_{lip}K_{lip/V} + \Phi_{cor}K_{cor/V}$$
+      mit $\Phi$ als Volumenanteile von Lipiden und Corneozyten.
+      \bigskip
+    \item Letzteres l\"asst sich weiter in Anteile aus Wasser und Proteinen
+      aufspalten.
+  \end{itemize}
+\end{frame}
+
+\subsection{Diffusionskoeffizient}
+\begin{frame}{Ermittlung des Diffusionskoeffizienten $D$ (1)}
+  \begin{itemize}
+    \item I.d.R. abh\"angig von Ort, Zeit, Konzentrationen und Diffusionsrichtung
+      \bigskip
+    \item \"Ublicherweise wird $D$ aus experimentellen Daten gewonnen
+      \bigskip
+    \item<2-> \textbf{Nachteil:}
+      \begin{itemize}
+        \item Experimentelle Daten sind oft sehr ungenau
+        \item Derartige $D$ k\"onnen nur mit den gleichen Stoffen verwendet werden,
+          f\"ur die sie ermittelt wurden.
+      \end{itemize}
+      \bigskip
+    \item<3-> \textbf{Alternative:} Modellbasierte Errechnung von $D$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ermittlung des Diffusionskoeffizienten $D$ (2)}
+  \begin{itemize}
+    \item<1-> \textsc{Potts}-\textsc{Guy}-Modell:
+      \scriptsize
+      \begin{equation}
+        \frac{D_{SC}}{h_{SC}} = \left( \frac{D^0}{h_{SC}}\right) e^{-\beta''\cdot MW}
+      \end{equation}
+      \normalsize
+    \item<2-> \textsc{Wang}-\textsc{Kasting}-\textsc{Nitsche}-Modell:
+      Ber\"ucksichtigung mikroskopischer Partitionierung und durchqueren dieser
+      \bigskip
+    \item<3-> \textsc{Mitragotri}-Modell: Basierend auf mechanischer Statistik und
+      ben\"otigter Energie eines diffundierenden Teilchens
+  \end{itemize}
+\end{frame}
+
+
+\subsection{Wegl\"ange und -kr\"ummung}
+\begin{frame}{Ermittlung der Diffusionswegl\"ange}
+  \begin{itemize}
+    \item<1-> Wegl\"ange ist Abh\"angig von Annahme, ob Corneozyten durchl\"assig sind
+      oder nicht.
+      \bigskip
+    \item<2-> Bei \textbf{durchl\"assigen} Corneozyten ist der Weg \textbf{k\"urzer}
+      und die Kr\"ummung \textbf{zu vernachl\"assigen}.
+      \bigskip
+    \item<3-> Bei \textbf{un}durchl\"assigen Corneozyten ist Weg \textbf{dramatisch l\"anger}
+      und Tortousit\"at nimmt \textbf{entscheidenden Einfluss}.
+  \end{itemize}
+\end{frame}
+
+
+\section{L\"osungsans\"atze}
+\begin{frame}{Wie die Berechnungen durchf\"uhren?}
+  \begin{itemize}
+    \item<1-> Mit welchen mathematischen Methoden k\"onnen die beschriebenen Modelle
+      berechnet werden?
+      \bigskip
+    \item<2-> Welche Vor- bzw. Nachteile ergeben sich aus der mathematischen Betrachtung
+      der Modelle?
+      \bigskip
+  \end{itemize}
+\end{frame}
+
+\subsection{Analytisch}
+\begin{frame}{\textsc{Laplace}-Transformation}
+  \begin{itemize}
+    \item Einfache Modelle k\"onnen oft mit \textsc{Laplace}-Transformationen
+      ann\"ahernd analytisch gel\"ost werden.
+      \bigskip
+    \item Wird meist zur Berechnung der Konzentrationen in Abh\"angigkeit von Ort
+      und Zeit verwendet.
+      \bigskip
+    \item<2-> \textbf{Nachteil:} K\"onnen nur bei konzentrationsunabh\"angigen Koeffizienten
+      und zeitunabh\"angigen Diffusionskoeffizienten verwendet werden.
+  \end{itemize}
+\end{frame}
+
+\subsection{Numerisch}
+\begin{frame}{Finite Differenzen}
+  \begin{itemize}
+    \item Was FD sind, ben\"otige ich in diesem Haus hier nicht zu erkl\"aren.
+      \bigskip
+    \item Angewendet auf zeitabh\"angiges Modell, bei dem der Diffusionskoeffizient
+      $D$ von der Konzentration $C$ und diese wiederum vom Ort abh\"angen.
+      \bigskip
+    \item<2-> \textsc{Kasting} verwendete ein gestaffeltes Gitter zur Diskretisierung.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Finite Elemente/Volumen}
+  \begin{itemize}
+    \item<1-> 2-Komponenten-Modell mit Fluss durch die Grenzfl\"ache und
+      unterschiedlichen Diffusionskoeffizienten (\textsc{Rim})
+      \bigskip
+    \item<2-> 2-Phasen Ziegel-M\"ortel-Modell und Wirkstofffluss durch SC (\textsc{Heisig})
+      \bigskip
+    \item<3-> FE Simulationen legen nahe, ein einfaches Ziegel-M\"ortel-Modell an
+      Stelle komplexer Geometrien zu verwenden. (\textsc{Barbero})
+  \end{itemize}
+\end{frame}
+
+
+\section{Ausblick}
+\begin{frame}{Derzeitige Anwendung und Planungen}
+  \begin{itemize}
+    \item Heutzutage werden haupts\"achlich die QSPR-Modelle verwendet.
+      \bigskip
+    \item Hauptanwendung ist Berechnung von Aufnahme von Schadstoffen \"uber die
+      Haut bei unterschiedlich langer Exposition.
+      \bigskip
+    \item Zahlreiche Grenzwerte von Gesundheitsbeh\"orden sind so berechnet worden
+      (z.B. Zeitbegrenzung f\"urs Schwimmen in mit Pestiziden belastetem Wasser)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Was bleibt zu tun?}
+  \begin{itemize}
+    \item<1-> Wahl des Modells ist sehr stark abh\"angig von der Fragestellung.
+      \bigskip
+    \item<2-> Komplexe Modelle m\"ogen die Realit\"at besser widerspiegeln, doch
+      fehlt hierf\"ur die experimentelle Datengrundlage.
+      \bigskip
+    \item<3-> Daher m\"ussen die Zahl und Art freier Modellparameter an diese
+      Datenlage angepasst werden, um Validierung zu erm\"oglichen.
+  \end{itemize}
+\end{frame}
+
+
+\section{Ende}
+\begin{frame}{Danke}
+  \begin{center}\Large
+    Vielen Dank f\"ur die Aufmerksamkeit
+
+    \vfill
+
+    Fragen ? !
+  \end{center}
+\end{frame}
+
+
+\section{Quellen}
+\begin{frame}{Quellen}
+  \begin{itemize}
+    \item \textsc{Mitragotri et al.},
+      \textit{Mathematical Models of Skin Permeability: An Overview},
+      Int. J. Pharm., 418(2011)115-29, doi:10.1016/j.ijpharm.2011.02.023.
+  \end{itemize}
+\end{frame}
+
+
+\end{document}
